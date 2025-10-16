@@ -1,0 +1,48 @@
+# analytics.py
+
+import matplotlib.pyplot as plt
+
+def max_altitude(trajectory):
+    return max(point['pos_y'] for point in trajectory)
+
+def max_speed(trajectory):
+    return max(point['speed'] for point in trajectory)
+
+def total_flight_time(trajectory):
+    return trajectory[-1]['time'] if trajectory else 0
+
+def plot_altitude_time(trajectory):
+    times = [point['time'] for point in trajectory]
+    altitudes = [point['pos_y'] for point in trajectory]
+
+    plt.figure()
+    plt.plot(times, altitudes)
+    plt.xlabel('Time (s)')
+    plt.ylabel('Altitude (m)')
+    plt.title('Altitude vs Time')
+    plt.grid(True)
+    plt.show()
+
+def plot_speed_time(trajectory):
+    times = [point['time'] for point in trajectory]
+    speeds = [point['speed'] for point in trajectory]
+
+    plt.figure()
+    plt.plot(times, speeds)
+    plt.xlabel('Time (s)')
+    plt.ylabel('Speed (m/s)')
+    plt.title('Speed vs Time')
+    plt.grid(True)
+    plt.show()
+
+def plot_cd_altitude(trajectory):
+    altitudes = [point['pos_y'] for point in trajectory]
+    cds = [point['Cd'] for point in trajectory]
+
+    plt.figure()
+    plt.plot(altitudes, cds)
+    plt.xlabel('Altitude (m)')
+    plt.ylabel('Drag Coefficient Cd')
+    plt.title('Drag Coefficient vs Altitude')
+    plt.grid(True)
+    plt.show()
